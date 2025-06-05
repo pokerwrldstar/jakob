@@ -104,18 +104,18 @@
 
         /* Add this new CSS for the team logo background */
         .team-logo-bg {
-    position: absolute;
-    right: -30%; /* This moves the logo halfway off the right side */
-    top: 0;
-    height: 100%;
-    width: 100%; /* Keep full width but position it halfway off */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: right center; /* Keep the logo aligned to right */
-    opacity: 0.15;
-    z-index: 0;
-    pointer-events: none;
-}
+            position: absolute;
+            right: -30%; /* This moves the logo halfway off the right side */
+            top: 0;
+            height: 100%;
+            width: 100%; /* Keep full width but position it halfway off */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right center; /* Keep the logo aligned to right */
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
 
         .pick-number {
             grid-area: number;
@@ -387,42 +387,42 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Map team names to logo paths (replace with your actual logo paths)
             const teamLogos = {
-                "Atlanta Hawks": "logos/hawks.jpg",
-                "Boston Celtics": "logos/celtics.jpg",
-                "Brooklyn Nets": "logos/nets.jpg",
-                "Charlotte Hornets": "logos/hornets.jpg",
-                "Chicago Bulls": "logos/bulls.jpg",
-                "Cleveland Cavaliers": "logos/cavaliers.jpg",
-                "Dallas Mavericks": "logos/mavericks.jpg",
-                "Denver Nuggets": "logos/nuggets.jpg",
-                "Detroit Pistons": "logos/pistons.jpg",
-                "Golden State Warriors": "logos/warriors.jpg",
-                "Houston Rockets": "logos/rockets.jpg",
-                "Indiana Pacers": "logos/pacers.jpg",
-                "Los Angeles Clippers": "logos/clippers.jpg",
-                "Los Angeles Lakers": "logos/lakers.jpg",
-                "Memphis Grizzlies": "logos/grizzlies.jpg",
-                "Miami Heat": "logos/heat.jpg",
-                "Milwaukee Bucks": "logos/bucks.jpg",
-                "Minnesota Timberwolves": "logos/timberwolves.jpg",
-                "New Orleans Pelicans": "logos/pelicans.jpg",
-                "New York Knicks": "logos/knicks.jpg",
-                "Oklahoma City Thunder": "logos/thunder.jpg",
-                "Orlando Magic": "logos/magic.jpg",
-                "Philadelphia 76ers": "logos/76ers.jpg",
-                "Phoenix Suns": "logos/suns.jpg",
-                "Portland Trail Blazers": "logos/blazers.jpg",
-                "Sacramento Kings": "logos/kings.jpg",
-                "San Antonio Spurs": "logos/spurs.jpg",
-                "Toronto Raptors": "logos/raptors.jpg",
-                "Utah Jazz": "logos/jazz.jpg",
-                "Washington Wizards": "logos/wizards.jpg"
+                "Atlanta Hawks": "images/logos/hawks.jpg",
+                "Boston Celtics": "images/logos/celtics.jpg",
+                "Brooklyn Nets": "images/logos/nets.jpg",
+                "Charlotte Hornets": "images/logos/hornets.jpg",
+                "Chicago Bulls": "images/logos/bulls.jpg",
+                "Cleveland Cavaliers": "images/logos/cavaliers.jpg",
+                "Dallas Mavericks": "images/logos/mavericks.jpg",
+                "Denver Nuggets": "images/logos/nuggets.jpg",
+                "Detroit Pistons": "images/logos/pistons.jpg",
+                "Golden State Warriors": "images/logos/warriors.jpg",
+                "Houston Rockets": "images/logos/rockets.jpg",
+                "Indiana Pacers": "images/logos/pacers.jpg",
+                "Los Angeles Clippers": "images/logos/clippers.jpg",
+                "Los Angeles Lakers": "images/logos/lakers.jpg",
+                "Memphis Grizzlies": "images/logos/grizzlies.jpg",
+                "Miami Heat": "images/logos/heat.jpg",
+                "Milwaukee Bucks": "images/logos/bucks.jpg",
+                "Minnesota Timberwolves": "images/logos/timberwolves.jpg",
+                "New Orleans Pelicans": "images/logos/pelicans.jpg",
+                "New York Knicks": "images/logos/knicks.jpg",
+                "Oklahoma City Thunder": "images/logos/thunder.jpg",
+                "Orlando Magic": "images/logos/magic.jpg",
+                "Philadelphia 76ers": "images/logos/76ers.jpg",
+                "Phoenix Suns": "images/logos/suns.jpg",
+                "Portland Trail Blazers": "images/logos/blazers.jpg",
+                "Sacramento Kings": "images/logos/kings.jpg",
+                "San Antonio Spurs": "images/logos/spurs.jpg",
+                "Toronto Raptors": "images/logos/raptors.jpg",
+                "Utah Jazz": "images/logos/jazz.jpg",
+                "Washington Wizards": "images/logos/wizards.jpg"
             };
 
             const prospects = [
                 {
                     name: "Cooper Flagg | #2",
-                    image: "draftpics/cooperflaggpic.jpg",
+                    image: "images/draftpics/cooperflaggpic.jpg",
                     position: "Wing",
                     height: "6'7.75\"",
                     weight: "221.0 lbs",
@@ -444,7 +444,7 @@
                 },
                 {
                     name: "Dylan Harper | #2",
-                    image: "draftpics/dylanharperpic.jpg",
+                    image: "images/draftpics/dylanharperpic.jpg",
                     position: "Lead Guard",
                     height: "6'4.50\"",
                     weight: "213.2 lbs",
@@ -466,7 +466,7 @@
                 },
                 {
                     name: "Tre Johnson | #20",
-                    image: "draftpics/trejohnsonpic.jpg",
+                    image: "images/draftpics/trejohnsonpic.jpg",
                     position: "Combo Guard",
                     height: "6'4.75\"",
                     weight: "190 lbs",
@@ -488,7 +488,7 @@
                 },
                 {
                     name: "V.J. Edgecombe | #7",
-                    image: "draftpics/vjedgecombepic.jpg",
+                    image: "images/draftpics/vjedgecombepic.jpg",
                     position: "Guard",
                     height: "6'4\"",
                     weight: "193.2 lbs",
@@ -511,7 +511,7 @@
 
                 {
                     name: "Ace Bailey | #4",
-                    image: "draftpics/acebaileypic.jpg",
+                    image: "images/draftpics/acebaileypic.jpg",
                     position: "Wing",
                     height: "6'7.5\"",
                     weight: "202.80 lbs",
@@ -534,7 +534,7 @@
 
                 {
                     name: "Khaman Maluach | #9",
-                    image: "draftpics/khamanmaluachpic.jpg",
+                    image: "images/draftpics/khamanmaluachpic.jpg",
                     position: "Big",
                     height: "7'0.75\"",
                     weight: "252.8 lbs",
@@ -556,7 +556,7 @@
                 },
                 {
                     name: "Kasparas Jakucionis | #32",
-                    image: "draftpics/kasparasjakucionispic.jpg",
+                    image: "images/draftpics/kasparasjakucionispic.jpg",
                     position: "Lead Guard",
                     height: "6'4.75\"",
                     weight: "205.2 lbs",
@@ -578,7 +578,7 @@
                 },
                 {
                     name: "Noa Essengue | #12",
-                    image: "draftpics/noaessenguepic.jpg",
+                    image: "images/draftpics/noaessenguepic.jpg",
                     position: "Forward",
                     height: "6'9\"",
                     weight: "198 lbs",
@@ -600,7 +600,7 @@
                 },
                 {
                     name: "Nolan Traore | #2",
-                    image: "draftpics/nolantraorepic.jpg",
+                    image: "images/draftpics/nolantraorepic.jpg",
                     position: "Lead Guard",
                     height: "6'3\"",
                     weight: "175 lbs",
@@ -622,7 +622,7 @@
                 },
                 {
                     name: "Derik Queen | #25",
-                    image: "draftpics/derikqueenpic.jpg",
+                    image: "images/draftpics/derikqueenpic.jpg",
                     position: "Big/Foward",
                     height: "6'9.25\"",
                     weight: "247.8 lbs",
@@ -644,7 +644,7 @@
                 },
                 {
                     name: "Carter Bryant | #9",
-                    image: "draftpics/carterbryantpic.jpg",
+                    image: "images/draftpics/carterbryantpic.jpg",
                     position: "Foward/Wing",
                     height: "6'6.5\"",
                     weight: "214.8 lbs",
@@ -666,7 +666,7 @@
                 },
                 {
                     name: "Kon Knueppel | #7",
-                    image: "draftpics/konknueppelpic.jpg",
+                    image: "images/draftpics/konknueppelpic.jpg",
                     position: "Wing/Guard",
                     height: "6'5\"",
                     weight: "219 lbs",
@@ -688,7 +688,7 @@
                 },
                 {
                     name: "Thomas Sorber | #35",
-                    image: "draftpics/thomassorberpic.jpg",
+                    image: "images/draftpics/thomassorberpic.jpg",
                     position: "Big",
                     height: "6'9.25\"",
                     weight: "262.8 lbs",
@@ -710,7 +710,7 @@
                 },
                 {
                     name: "Rasheer Fleming | #13",
-                    image: "draftpics/rasheerflemingpic.jpg",
+                    image: "images/draftpics/rasheerflemingpic.jpg",
                     position: "Forward/Wing",
                     height: "6'8.25\"",
                     weight: "232.4 lbs",
@@ -747,7 +747,7 @@
                     // Create the team logo background div
                     const logoBg = document.createElement('div');
                     logoBg.className = 'team-logo-bg';
-                    logoBg.style.backgroundImage = `url('${teamLogos[prospect.team]}')`;
+                    logoBg.style.backgroundImage = `url('${teamLogos[prospect.team] || ''}')`;
 
                     card.innerHTML = `
                         <div class="pick-number">${index + 1}</div>
