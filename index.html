@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>▶▶▶JAKOB'S 2025 NBA MOCK DRAFT◀◀◀</title>
+    <style>
+        @font-face {
+            font-family: 'Helvetica Neue';
+            src: url('https://fonts.cdnfonts.com/css/helvetica-neue-55') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #ffffff;
+            --accent: #afafaf;
+            --highlight: #f0f0f0;
+            --card-bg: #e6e6e6;
+            --border-size: 4px;
+            --image-height: 400px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            margin: 0 auto 20px;
+            padding: 20px;
+            border: var(--border-size) solid var(--primary);
+            background-color: var(--highlight);
+            box-shadow: 8px 8px 0 var(--primary);
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .search-container {
+            margin: 20px auto;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        #searchBar {
+            width: 100%;
+            padding: 12px;
+            border: var(--border-size) solid var(--primary);
+            font-size: 1.1rem;
+            box-shadow: 4px 4px 0 var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        #searchBar:focus {
+            outline: none;
+            box-shadow: 6px 6px 0 var(--accent);
+        }
+
+        .draft-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .prospect-card {
+            border: var(--border-size) solid var(--primary);
+            background-color: var(--card-bg);
+            padding: 25px;
+            box-shadow: 8px 8px 0 var(--primary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 650px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto auto auto 1fr auto auto;
+            grid-template-areas:
+                "number class"
+                "image name"
+                "image details"
+                "content content"
+                "stats stats"
+                "button button"
+                "report report";
+            gap: 1px;
+        }
+
+        /* Add this new CSS for the team logo background */
+        .team-logo-bg {
+    position: absolute;
+    right: -30%; /* This moves the logo halfway off the right side */
+    top: 0;
+    height: 100%;
+    width: 100%; /* Keep full width but position it halfway off */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right center; /* Keep the logo aligned to right */
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+        .pick-number {
+            grid-area: number;
+            position: relative;
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 5px 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-right: var(--border-size) solid var(--primary);
+            border-bottom: var(--border-size) solid var(--primary);
+            width: fit-content;
+            margin-bottom: 15px;
+            z-index: 1;
+        }
+
+        .prospect-class {
+            grid-area: class;
+            justify-self: end;
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 5px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-right: var(--border-size) solid var(--primary);
+            border-bottom: var(--border-size) solid var(--primary);
+            margin-bottom: 15px;
+            z-index: 1;
+        }
+
+        .prospect-age {
+            position: absolute;
+            right: 25px;
+            top: 80px;
+            background-color: var(--accent);
+            color: var(--secondary);
+            padding: 3px 10px;
+            font-size: 0.9rem;
+            border-right: var(--border-size) solid var(--primary);
+            border-bottom: var(--border-size) solid var(--primary);
+            z-index: 1;
+        }
+
+        .prospect-image {
+            grid-area: image;
+            width: var(--image-height);
+            height: var(--image-height);
+            border: var(--border-size) solid var(--primary);
+            background-color: var(--secondary);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-right: 20px;
+            z-index: 1;
+        }
+
+        .prospect-name {
+            grid-area: name;
+            font-size: 2rem;
+            margin-bottom: 0;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+            align-self: end;
+            line-height: 1.2;
+            z-index: 1;
+        }
+
+        .prospect-details {
+            grid-area: details;
+            font-size: 1rem;
+            line-height: 1.2;
+            margin-top: 5px;
+            z-index: 1;
+        }
+
+        .prospect-team {
+            font-weight: bold;
+            margin-top: 5px;
+            z-index: 1;
+        }
+
+        .card-content {
+            grid-area: content;
+            margin-top: 10px;
+            z-index: 1;
+        }
+
+        .prospect-analysis {
+            line-height: 1.5;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            z-index: 1;
+        }
+
+        .prospect-stats {
+            grid-area: stats;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 10px 0;
+            z-index: 1;
+        }
+
+        .stat-item {
+            border: 2px solid var(--primary);
+            padding: 8px;
+            text-align: center;
+            background-color: rgba(255,255,255,0.7);
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .expand-button {
+            grid-area: button;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent);
+            color: var(--secondary);
+            border: var(--border-size) solid var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 4px 4px 0 var(--primary);
+            transition: all 0.2s ease;
+            margin: 10px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .expand-button:hover {
+            background-color: var(--primary);
+            box-shadow: 6px 6px 0 var(--accent);
+        }
+
+        .expand-button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--primary);
+        }
+
+        .detailed-report {
+            grid-area: report;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 2px solid var(--accent);
+            padding-left: 15px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .detailed-report.expanded {
+            max-height: 2000px;
+            margin-bottom: 15px;
+            opacity: 1;
+            transform: translateY(0);
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+        }
+
+        .report-section {
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            transition-delay: 0.1s;
+        }
+
+        .detailed-report.expanded .report-section {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .report-section h3 {
+            font-size: 1.1rem;
+            border-bottom: 1px solid var(--primary);
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+
+        .report-section p, .report-section ul {
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        .report-section ul {
+            padding-left: 18px;
+            margin-bottom: 10px;
+        }
+
+        .report-section li {
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .prospect-card {
+                min-height: auto;
+                padding: 20px;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto auto auto auto auto;
+                grid-template-areas:
+                    "number"
+                    "class"
+                    "image"
+                    "name"
+                    "details"
+                    "content"
+                    "stats"
+                    "button"
+                    "report";
+            }
+
+            .prospect-image {
+                width: 100%;
+                height: 250px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .prospect-age {
+                right: 20px;
+                top: 120px;
+            }
+
+            .prospect-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Adjust logo for mobile */
+            .team-logo-bg {
+                width: 100%;
+                opacity: 0.1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .prospect-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>▶▶▶JAKOB'S 2025 NBA MOCK DRAFT◀◀◀</h1>
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="Search prospects by name, team, or school..." />
+        </div>
+    </header>
+
+    <div class="draft-container" id="draftContainer">
+        <!-- Cards will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Map team names to logo paths (replace with your actual logo paths)
+            const teamLogos = {
+                "Atlanta Hawks": "logos/hawks.png",
+                "Boston Celtics": "logos/celtics.png",
+                "Brooklyn Nets": "logos/nets.png",
+                "Charlotte Hornets": "logos/hornets.png",
+                "Chicago Bulls": "logos/bulls.png",
+                "Cleveland Cavaliers": "logos/cavaliers.png",
+                "Dallas Mavericks": "logos/mavericks.png",
+                "Denver Nuggets": "logos/nuggets.png",
+                "Detroit Pistons": "logos/pistons.png",
+                "Golden State Warriors": "logos/warriors.png",
+                "Houston Rockets": "logos/rockets.png",
+                "Indiana Pacers": "logos/pacers.png",
+                "Los Angeles Clippers": "logos/clippers.png",
+                "Los Angeles Lakers": "logos/lakers.png",
+                "Memphis Grizzlies": "logos/grizzlies.png",
+                "Miami Heat": "logos/heat.png",
+                "Milwaukee Bucks": "logos/bucks.png",
+                "Minnesota Timberwolves": "logos/timberwolves.png",
+                "New Orleans Pelicans": "logos/pelicans.png",
+                "New York Knicks": "logos/knicks.png",
+                "Oklahoma City Thunder": "logos/thunder.png",
+                "Orlando Magic": "logos/magic.png",
+                "Philadelphia 76ers": "logos/76ers.png",
+                "Phoenix Suns": "logos/suns.png",
+                "Portland Trail Blazers": "logos/blazers.png",
+                "Sacramento Kings": "logos/kings.png",
+                "San Antonio Spurs": "logos/spurs.png",
+                "Toronto Raptors": "logos/raptors.png",
+                "Utah Jazz": "logos/jazz.png",
+                "Washington Wizards": "logos/wizards.png"
+            };
+
+            const prospects = [
+                {
+                    name: "Cooper Flagg | #2",
+                    image: "draftpics/cooperflaggpic.png",
+                    position: "Wing",
+                    height: "6'7.75\"",
+                    weight: "221.0 lbs",
+                    school: "Duke",
+                    team: "Dallas Mavericks",
+                    class: "Freshman",
+                    age: "18.5",
+                    analysis: "Swiss army knife prospect who has no weaknesses, and a future 5x5 beast.",
+                    detailedAnalysis: {
+                        comparison: "Scottie Pippen, Andrei Kirilenko, and Kawhi Leonard",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "19.2",
+                        rpg: "7.5",
+                        apg: "4.2",
+                        bpg: "1.4"
+                    }
+                },
+                {
+                    name: "Dylan Harper | #2",
+                    image: "draftpics/dylanharperpic.png",
+                    position: "Lead Guard",
+                    height: "6'4.50\"",
+                    weight: "213.2 lbs",
+                    school: "Rutgers",
+                    team: "San Antonio Spurs",
+                    class: "Freshman",
+                    age: "19.3",
+                    analysis: "A powerful, downhill guard with a dynamic four-level playmaking arsenal. ",
+                    detailedAnalysis: {
+                        comparison: "Jumbo Jalen Brunson and Malcom Brogdon",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "19.4",
+                        rpg: "4.6",
+                        apg: "4.0",
+                        "ts%": "58.7"
+                    }
+                },
+                {
+                    name: "Tre Johnson | #20",
+                    image: "draftpics/trejohnsonpic.png",
+                    position: "Combo Guard",
+                    height: "6'4.75\"",
+                    weight: "190 lbs",
+                    school: "Texas",
+                    team: "Philadelphia 76ers",
+                    class: "Freshman",
+                    age: "19.3",
+                    analysis: "A hyper efficent bucket-getter who has the ultimate green light. ",
+                    detailedAnalysis: {
+                        comparison: "Reggie Miller and Cameron Thomas",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "19.9",
+                        rpg: "3.1",
+                        apg: "2.7",
+                        "3p%": "39.7"
+                    }
+                },
+                {
+                    name: "V.J. Edgecombe | #7",
+                    image: "draftpics/vjedgecombepic.png",
+                    position: "Guard",
+                    height: "6'4\"",
+                    weight: "193.2 lbs",
+                    school: "Baylor",
+                    team: "Charlotte Hornets",
+                    class: "Freshman",
+                    age: "19.9",
+                    analysis: "Superhuman levels of atheticism, and has one of the highest defensive motor of the class.",
+                    detailedAnalysis: {
+                        comparison: "Victor Oladipo and Ausar Thompson",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "15.0",
+                        rpg: "5.6",
+                        apg: "3.2",
+                        spg: "2.1",
+                    }
+                },
+
+                {
+                    name: "Ace Bailey | #4",
+                    image: "draftpics/acebaileypic.png",
+                    position: "Wing",
+                    height: "6'7.5\"",
+                    weight: "202.80 lbs",
+                    school: "Rutgers",
+                    team: "Utah Jazz",
+                    class: "Freshman",
+                    age: "18.9",
+                    analysis: "The prototypical NBA wing with a shot selection only beat by Kobe.",
+                    detailedAnalysis: {
+                        comparison: "Pre-injury Michael Porter Jr. and Jabari Smith Jr.",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "17.6",
+                        rpg: "7.2",
+                        apg: "1.3",
+                        blk: "1.4",
+                    }
+                },
+
+                {
+                    name: "Khaman Maluach | #9",
+                    image: "draftpics/khamanmaluachpic.png",
+                    position: "Big",
+                    height: "7'0.75\"",
+                    weight: "252.8 lbs",
+                    school: "Duke",
+                    team: "Washington Wizards",
+                    class: "Freshman",
+                    age: "18.8",
+                    analysis: "A mobile gangly colossus who can make an immediate impact with frame alone.",
+                    detailedAnalysis: {
+                        comparison: "Rudy Gobert and Derick Lively II",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "8.6",
+                        rpg: "6.6",
+                        bpg: "1.3",
+                        "ft%": "76.6",
+                    }
+                },
+                {
+                    name: "Kasparas Jakucionis | #32",
+                    image: "draftpics/kasparasjakucionispic.png",
+                    position: "Lead Guard",
+                    height: "6'4.75\"",
+                    weight: "205.2 lbs",
+                    school: "Illnois",
+                    team: "New Orleans Pelicans",
+                    class: "Freshman",
+                    age: "19.1",
+                    analysis: "Do-it-all euro guard who you can center your offense around.",
+                    detailedAnalysis: {
+                        comparison: "Spencer Dinwiddie and 70% Luka Doncic",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "15.0",
+                        apg: "4.7",
+                        rpg: "5.7",
+                        fta: "5.1",
+                    }
+                },
+                {
+                    name: "Noa Essengue | #12",
+                    image: "draftpics/noaessenguepic.png",
+                    position: "Forward",
+                    height: "6'9\"",
+                    weight: "198 lbs",
+                    school: "Ratiopharm Ulm",
+                    team: "Brooklyn Nets",
+                    class: "",
+                    age: "18.5",
+                    analysis: "Tremendous upside that checks all the marks, physically and intellectually.",
+                    detailedAnalysis: {
+                        comparison: "Bilal Coulibaly and Pascal Siakam",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "12.4",
+                        apg: "5.3",
+                        spg: "1.4",
+                        fta: "5.6",
+                    }
+                },
+                {
+                    name: "Nolan Traore | #2",
+                    image: "draftpics/nolantraorepic.png",
+                    position: "Lead Guard",
+                    height: "6'3\"",
+                    weight: "175 lbs",
+                    school: "Saint-Quentin Basket-Ball",
+                    team: "Toronto Raptors",
+                    class: "",
+                    age: "19.0",
+                    analysis: "Visionary nifty point guard who plays WAY bigger than he is.",
+                    detailedAnalysis: {
+                        comparison: "Coby White and Ty Jerome",
+                        writeup: "."
+                    },
+                    stats: {
+                        ppg: "11.6",
+                        apg: "5.1",
+                        rpg: "1.7",
+                        tov: "2.5",
+                    }
+                },
+                {
+                    name: "Derik Queen | #25",
+                    image: "draftpics/derikqueenpic.png",
+                    position: "Big/Foward",
+                    height: "6'9.25\"",
+                    weight: "247.8 lbs",
+                    school: "Illnois",
+                    team: "Houston Rockets",
+                    class: "Freshman",
+                    age: "20.5",
+                    analysis: "Backdown punisher who create offense of that, and fits the 'big guard' mold to a tee.",
+                    detailedAnalysis: {
+                        comparison: "Boris Diaw, and Alpren Sengun",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "16.5",
+                        rpg: "9.0",
+                        apg: "1.9",
+                        stl: "1.1",
+                    }
+                },
+                {
+                    name: "Carter Bryant | #9",
+                    image: "draftpics/carterbryantpic.png",
+                    position: "Foward/Wing",
+                    height: "6'6.5\"",
+                    weight: "214.8 lbs",
+                    school: "Arizona",
+                    team: "Portland Trailblazers",
+                    class: "Freshman",
+                    age: "19.6",
+                    analysis: "Raw athelete and can shut players out, and has upside as a plus shooter.",
+                    detailedAnalysis: {
+                        comparison: "Trevor Ariza and Toumani Camara",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "6.5",
+                        rpg: "4.1",
+                        bpg: "1.0",
+                        spg: "1.0",
+                    }
+                },
+                {
+                    name: "Kon Knueppel | #7",
+                    image: "draftpics/konknueppelpic.png",
+                    position: "Wing/Guard",
+                    height: "6'5\"",
+                    weight: "219 lbs",
+                    school: "Duke",
+                    team: "Chicago Bulls",
+                    class: "Freshman",
+                    age: "19.9",
+                    analysis: "Glue guy who has an answer for every problem packaged with innate spacing.",
+                    detailedAnalysis: {
+                        comparison: "Austin Reaves, and Brandin Podziemski",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "14.4",
+                        rpg: "4.0",
+                        apg: "2.7",
+                        "3p%": "40.6",
+                    }
+                },
+                {
+                    name: "Thomas Sorber | #35",
+                    image: "draftpics/thomassorberpic.png",
+                    position: "Big",
+                    height: "6'9.25\"",
+                    weight: "262.8 lbs",
+                    school: "Georgetown",
+                    team: "Atlanta Hawks",
+                    class: "Freshman",
+                    age: "19.5",
+                    analysis: "An impactful inside-the-arc big who doesn't backdown to anyone.",
+                    detailedAnalysis: {
+                        comparison: "Bobby Portis Jr. and Daniel Gafford",
+                        writeup: ""
+                    },
+                    stats: {
+                        ppg: "14.5",
+                        rpg: "8.5",
+                        bpg: "2.0",
+                        spg: "1.5",
+                    }
+                },
+                {
+                    name: "Rasheer Fleming | #13",
+                    image: "draftpics/rasheerflemingpic.png",
+                    position: "Forward/Wing",
+                    height: "6'8.25\"",
+                    weight: "232.4 lbs",
+                    school: "Saint Joseph's",
+                    team: "San Antonio Spurs",
+                    class: "Junior",
+                    age: "20.8",
+                    analysis: "An ideal connective forward with excellent length and promising perimeter scoring.",
+                    detailedAnalysis: {
+                        comparison: "Jerami Grant and Jae'Sean Tate",
+                        writeup: "."
+                    },
+                    stats: {
+                        ppg: "14.7",
+                        rpg: "8.5",
+                        bpg: "1.5",
+                        "3p%": "39.0"
+                    }
+                }
+            ];
+
+            const draftContainer = document.getElementById('draftContainer');
+            const searchBar = document.getElementById('searchBar');
+
+            function renderProspects(filteredProspects) {
+                draftContainer.innerHTML = '';
+
+                const prospectsToRender = filteredProspects || prospects;
+
+                prospectsToRender.forEach((prospect, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'prospect-card';
+
+                    // Create the team logo background div
+                    const logoBg = document.createElement('div');
+                    logoBg.className = 'team-logo-bg';
+                    logoBg.style.backgroundImage = `url('${teamLogos[prospect.team]}')`;
+
+                    card.innerHTML = `
+                        <div class="pick-number">${index + 1}</div>
+                        <div class="prospect-class">${prospect.class}</div>
+                        <div class="prospect-age">Age: ${prospect.age}</div>
+                        <div class="prospect-image" style="background-image: url('${prospect.image}')"></div>
+                        <h2 class="prospect-name">${prospect.name}</h2>
+                        <div class="prospect-details">
+                            <span>${prospect.position} | ${prospect.height} | ${prospect.weight} | ${prospect.school}</span>
+                        </div>
+                        <div class="prospect-team">Projected to: ${prospect.team}</div>
+                        <div class="card-content">
+                            <div class="prospect-analysis">${prospect.analysis}</div>
+                        </div>
+                        <div class="prospect-stats">
+                            ${Object.entries(prospect.stats).map(([key, value]) => `
+                                <div class="stat-item">
+                                    <div class="stat-label">${key.toUpperCase()}</div>
+                                    <div class="stat-value">${value}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <button class="expand-button">▼ EXPAND SCOUTING REPORT ▼</button>
+                        <div class="detailed-report">
+                            <div class="report-section">
+                                <h3>NBA COMPARISON</h3>
+                                <p>${prospect.detailedAnalysis.comparison}</p>
+                            </div>
+                            <div class="report-section">
+                                <h3>WRITEUP</h3>
+                                <p>${prospect.detailedAnalysis.writeup}</p>
+                            </div>
+                        </div>
+                    `;
+
+                    // Insert the logo background first (so it's behind other content)
+                    card.insertBefore(logoBg, card.firstChild);
+
+                    draftContainer.appendChild(card);
+
+                    // Add expand/collapse functionality with animations
+                    const button = card.querySelector('.expand-button');
+                    const report = card.querySelector('.detailed-report');
+
+                    button.addEventListener('click', () => {
+                        const isExpanding = !report.classList.contains('expanded');
+
+                        if (isExpanding) {
+                            report.style.display = 'block';
+                            setTimeout(() => {
+                                report.classList.add('expanded');
+                            }, 10);
+                        } else {
+                            report.classList.remove('expanded');
+                            setTimeout(() => {
+                                report.style.display = 'none';
+                            }, 500);
+                        }
+
+                        button.textContent = isExpanding
+                            ? '▲ COLLAPSE REPORT ▲'
+                            : '▼ EXPAND SCOUTING REPORT ▼';
+                    });
+                });
+            }
+
+            // Initial render
+            renderProspects();
+
+            // Search functionality
+            searchBar.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filtered = prospects.filter(prospect =>
+                    prospect.name.toLowerCase().includes(searchTerm) ||
+                    prospect.team.toLowerCase().includes(searchTerm) ||
+                    prospect.school.toLowerCase().includes(searchTerm) ||
+                    prospect.position.toLowerCase().includes(searchTerm)
+                );
+                renderProspects(filtered);
+            });
+        });
+    </script>
+</body>
+</html>
